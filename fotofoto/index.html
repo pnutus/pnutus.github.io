@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>fotofoto</title>
+	<meta charset="utf-8">
+	<style>
+		a {
+			text-decoration: none;
+			color: #ff3333
+		}
+
+		body {
+			width: 603px;
+			margin: 0 auto;
+			font-family: "Helvetica Neue", sans-serif;
+			font-size: 20px;
+		}
+
+		#header {
+			display: flex;
+			align-items: center;
+		}
+
+		#header > img {
+			width: 200px;
+		}
+
+		#header h1 {
+			font-size: 120px;
+			font-weight: 200;
+			margin: 50px 20px;
+		}
+
+		#comic {
+			display: flex;
+			flex-direction: row;
+			flex-wrap: wrap;
+			justify-content: space-between;
+		}
+
+		#comic > div {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+
+		}
+
+		#comic > div img {
+			width: 300px;
+		}
+
+		#comic > div.full {
+			width: 100%;
+			font-size: 40px
+		}
+
+		#comic > div.full img {
+			width: 100%;
+		}
+
+		#footer {
+			margin: 100px 0;
+			text-align: center;
+			font-size: 30px
+		}
+	</style>
+</head>
+<body>
+	<div id="header">
+		<img src="../images/fotofoto_icon.png">
+		<h1>fotofoto</h1>
+	</div>
+	
+	<div id="comic">
+		
+		<div class="full">
+			<p>here's a photo:</p>
+			<img src="images/target.jpg">
+			<p>where was it taken?</p>
+		</div>
+
+		<div>
+			<p>explore the real world</p>
+			<img src="images/where.jpg">
+		</div>
+		
+		<div>
+			<p>work with your friends</p>
+			<img src="images/explore.jpg">
+		</div>
+
+		<div>
+			<p>see details you never noticed</p>
+			<img src="images/details.jpg">
+		</div>
+
+		<div>
+			<p>find just the right angle</p>
+			<img src="images/angle.jpg">
+		</div>
+
+		<div class="full">
+			<p>and take the photo yourself!</p>
+		</div>
+
+		<div id="grid">
+		
+		</div>
+	</div>
+	<div>
+		<p>
+			fotofoto is a reality game where you are given a bunch of photos and want to find the places where they were taken so you can take the photos again. 
+		</p>
+		<p>
+			Sometimes, the challenge is in finding the area where the photo is taken. Sometimes, it requires noticing the smallest details. Some photos require you to get to a hard-to-reach place, while others are taken from an unusual perspective. Often there are clues, spatial or otherwise, that help lead you to the right spot.
+		</p>
+		<p>
+			While searching, not only will you find a new appreciation for the spaces around you — you might also find yourself becoming a photographer along the way!
+		</p>
+	</div>
+
+	<div id="grid">
+		
+	</div>
+
+	<div id="footer">
+		made by <a href="/">Pontus Granström</a>
+	</div>
+</body>
+</html>
