@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Pontus Granström</title>
+	<meta charset="utf-8">
+	<style>
+		body {
+			margin: 0;
+			font-family: "Helvetica Neue", sans-serif;
+		}
+
+		#wrapper {
+			width: 500px;
+			margin: 0 auto;
+		}
+
+		p {
+			margin-top: 0;
+		}
+
+		#header {
+			text-align: center;
+		}
+
+		h1 {
+			font-family: "Helvetica Neue", sans-serif;
+			font-size: 60px;
+			font-weight: 100;
+			margin-bottom: 10px;
+			text-align: center;
+		}
+
+		h2 {
+			font-family: "Helvetica Neue", sans-serif;
+			font-size: 30px;
+			font-weight: 100
+			margin-bottom: 10px;
+			text-align: center;
+		}
+
+		.projects h2 {
+			font-family: "Helvetica Neue", sans-serif;
+			font-size: 30px;
+			font-weight: 200;
+			margin: 0;
+			text-align: left;
+		}
+
+		.projects > a {
+			display: block;
+			width: 350px;
+			position: relative;
+			margin-left: 100px;
+			text-decoration: none;
+			color: black;
+			transition: 0.2s;
+		}
+
+		.projects > a:hover {
+			transform: translateX(-5%);
+		}
+
+		.projects > a:nth-child(even) {
+			margin-left: 200px;
+		}
+
+		.projects > a img {
+			height: 70px;
+			position: absolute;
+			left: -80px;
+		}
+	</style>
+</head>
+<body>
+	<div id="wrapper">
+		<div id="header">
+			<h1>Pontus Granström</h1>
+			<p>
+				I make games and interactive experiments. I want to use the interactive medium to help people learn new ways of thinking.
+			</p>
+		</div>
+		<h2>active projects</h2>
+		<div class="projects">
+			<a href="fotofoto">
+				<img src="images/fotofoto_icon.png">
+				<div>
+					<h2>fotofoto</h2>
+					<p>
+						here's a photo, figure out where it was taken
+					</p>
+				</div>
+			</a>
+			<a href="http://manytinythings.github.io">
+				<img src="images/many_tiny_things_icon.png">
+				<div>
+					<h2>Many Tiny Things</h2>
+					<p>
+						play around in the microscopic world and see how the macroscopic stuff around you emerges
+					</p>
+				</div>
+			</a>
+			<a>
+				<img src="images/the_ear_icon.png">
+				<div>
+					<h2>The Ear</h2>
+					<p>
+						put on headphones, walk around the city, explore a parallel world (no link yet)
+					</p>
+				</div>
+			</a>
+		</div>
+		<h2>past projects</h2>
+		<div class="projects">
+			<a href="http://keps.github.io">
+				<img src="images/keps_icon.png">
+				<div>
+					<h2>Keps</h2>
+					<p>
+						<del>a band</del>, <del>a podcast</del>, three friends
+					</p>
+				</div>
+			</a>
+		</div>
+		<h2>contact me!</h2>
+		<div id="footer">
+			<a href="mailto:pontusgranstrom@me.com">pontusgranstrom@me.com</a>
+			<a href="http://twitter.com/pnutus">@pnutus</a>
+		</div>
+	</div>
+	
+</body>
+</html>
