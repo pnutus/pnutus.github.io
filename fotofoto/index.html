@@ -6,7 +6,8 @@
 	<style>
 		a {
 			text-decoration: none;
-			color: #ff3333
+			color: #993300;
+			border-bottom: solid 3px #930;
 		}
 
 		body {
@@ -60,19 +61,33 @@
 
 		#grid {
 			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-between;
+			align-items: center;
+			align-content: center; 
+			margin: 50px 0;
+		}
+
+		#grid div {
+			display: flex;
 			justify-content: center;
 			align-items: center;
-			width: 100%;
-			height: 500px;
-			border: solid 1px black;
+			width: 119px;
+			height: 119px;
+			margin-bottom: 2px;
+		}
 
-			margin: 50px 0;
+		#grid div img {
+			display: block; 
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
 		}
 
 		#footer {
 			margin: 100px 0;
 			text-align: center;
-			font-size: 30px
+			font-size: 20px;
 		}
 	</style>
 </head>
@@ -127,7 +142,36 @@
 	</div>
 
 	<div id="grid">
-		imagine a grid of photos here
+		<div><img src="images/grid/0002.jpg"></div>
+		<div><img src="images/grid/0005.jpg"></div>
+		<div><img src="images/grid/0027.jpg"></div>
+		<div><img src="images/grid/0015.jpg"></div>
+		<div><img src="images/grid/0012.jpg"></div>
+		<div><img src="images/grid/0001.jpg"></div>
+		<div><img src="images/grid/0008.jpg"></div>
+		<div><img src="images/grid/0026.jpg"></div>
+		<div><img src="images/grid/0021.jpg"></div>
+		<div><img src="images/grid/0011.jpg"></div>
+		<div><img src="images/grid/0003.jpg"></div>
+		<div><img src="images/grid/0018.jpg"></div>
+		<div><img src="images/grid/0013.jpg"></div>
+		<div><img src="images/grid/0023.jpg"></div>
+		<div><img src="images/grid/0004.jpg"></div>
+		<div><img src="images/grid/0017.jpg"></div>
+		<div><img src="images/grid/0024.jpg"></div>
+		<div><img src="images/grid/0007.jpg"></div>
+		<div><img src="images/grid/0029.jpg"></div>
+		<div><img src="images/grid/0009.jpg"></div>
+		<div><img src="images/grid/0016.jpg"></div>
+		<div><img src="images/grid/0020.jpg"></div>
+		<div><img src="images/grid/0019.jpg"></div>
+		<div><img src="images/grid/0022.jpg"></div>
+		<div><img src="images/grid/0028.jpg"></div>
+		<div><img src="images/grid/0014.jpg"></div>
+		<div><img src="images/grid/0025.jpg"></div>
+		<div><img src="images/grid/0006.jpg"></div>
+		<div><img src="images/grid/0030.jpg"></div>
+		<div><img src="images/grid/0010.jpg"></div>
 	</div>
 
 	<div id="footer">
