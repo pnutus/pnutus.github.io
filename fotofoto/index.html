@@ -43,7 +43,17 @@
 			display: flex;
 			flex-direction: column;
 			align-items: center;
+			position: relative;
+		}
 
+		#comic > div p {
+			position: absolute;
+			margin: 20px;
+			padding: 5px 10px;
+
+			background-color: hsl(60, 90%, 100%);
+			border: solid 2px black;
+			/*box-shadow: 2px 2px black;*/
 		}
 
 		#comic > div img {
@@ -97,35 +107,42 @@
 	<div id="comic">
 		
 		<div class="full">
-			<p>here's a photo:</p>
+			<p style="top: 0; left: 0;">
+				here's a photo
+			</p>
 			<img src="images/target.jpg">
-			<p>where was it taken?</p>
+			<p style="bottom: 0; right: 0;">where was it taken?</p>
 		</div>
 
 		<div>
-			<p>explore the real world</p>
+			<p style="top: 0; left: 20px;">
+				explore the real world
+			</p>
 			<img src="images/where.jpg">
 		</div>
 
 		<div>
-			<p>see details you never noticed</p>
+			<p style="bottom: 0; left: 10px; font-size: 17px;">
+				see details you never noticed
+			</p>
 			<img src="images/details.jpg">
 		</div>
 		
 		<div>
-			<p>work with your friends</p>
+			<p style="bottom: 0; left: 0;">
+				work with your friends
+			</p>
 			<img src="images/explore.jpg">
 		</div>
 
 		<div>
-			<p>find just the right angle</p>
+			<p style="top: 10px; left: 30px; transform: rotateZ(10deg); font-size: 17px">
+				find just the right angle...
+			</p>
 			<img src="images/angle.jpg">
 		</div>
-
-		<div class="full">
-			<p>and take the photo yourself!</p>
-		</div>
 	</div>
+	<p style="display: block; font-size: 30px; text-align: center; padding: 10px 10px; border: solid 2px black; margin: 20px auto; width: 450px;">...and take the photo yourself!</p>
 	<div>
 		<div class="grid">
 			<div><img src="images/grid/0002.jpg"></div>
