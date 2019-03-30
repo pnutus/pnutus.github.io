@@ -9,9 +9,26 @@
 			font-family: "Helvetica Neue", sans-serif;
 		}
 
+		img.banner {
+			width: 100%;
+			margin: 0;
+			display: block;
+		}
+
 		#wrapper {
 			width: 500px;
 			margin: 0 auto;
+		}
+
+		a {
+			border-bottom: solid 1px black;
+			color: black;
+			text-decoration: none;
+		}
+
+		a:hover {
+			color: #3355bb;
+			border-bottom: solid 1px #3355bb;
 		}
 
 		p {
@@ -19,13 +36,16 @@
 		}
 
 		#header {
-			text-align: center;
-			margin: 50px 0;
+			margin: 50px auto;
+			width: 450px;
 		}
 
-		#header a {
-			text-decoration: none;
-			color: black;
+		#contact {
+			width: 300px;
+			margin: 30px auto;
+			font-size: 20px;
+			display: flex;
+			justify-content: space-between;
 		}
 
 		h1 {
@@ -33,7 +53,6 @@
 			font-size: 60px;
 			font-weight: 100;
 			margin: 10px 0;
-			text-align: center;
 		}
 
 		h2 {
@@ -64,6 +83,7 @@
 			color: black;
 			transition: 0.2s;
 			margin: 10px 0;
+			border: none;
 		}
 
 		.projects > a:hover {
@@ -78,22 +98,10 @@
 			height: 70px;
 			margin-right: 10px;
 		}
-
-		#footer {
-			text-align: center;
-			margin-bottom: 100px;
-			line-height: 2em;
-		}
-
-		#footer a {
-			text-decoration: none;
-			border-bottom: solid 1px black;
-			color: black;
-			font-size: 20px;
-		}
 	</style>
 </head>
 <body>
+	<img class="banner" src="images/banner_top.jpeg">
 	<div id="wrapper">
 		<div id="header">
 			<a href="?">
@@ -102,6 +110,11 @@
 			<p>
 				I make games and interactive experiments. I want to use the interactive medium to help people learn new ways of thinking.
 			</p>
+			<div id="contact">
+				<a href="http://twitter.com/pnutus">twitter</a>
+				<a href="mailto:pontusgranstrom@me.com">email</a>
+				<a href="https://www.youtube.com/channel/UCarZSLxb2tzlzDjE2x27oPQ">youtube</a>
+			</div>
 		</div>
 		<h2>active projects</h2>
 		<div class="projects">
@@ -145,13 +158,7 @@
 				</div>
 			</a>
 		</div>
-		<h2>contact me</h2>
-		<div id="footer">
-			<a href="mailto:pontusgranstrom@me.com">pontusgranstrom@me.com</a>
-			<br>
-			<a href="http://twitter.com/pnutus">@pnutus</a>
-		</div>
 	</div>
-	
+	<img class="banner" src="images/banner_bottom.jpeg">
 </body>
 </html>
