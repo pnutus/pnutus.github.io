@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 	<title>fotofoto malmö alpha</title>
 	<meta charset="utf-8">
+	<meta name="viewport" content="width=603">
 	<style type="text/css">
 		body {
 			width: 603px;
@@ -14,10 +15,12 @@
 		#header {
 			display: flex;
 			align-items: center;
+			position: relative;
 		}
 
 		#header > img {
 			width: 200px;
+			margin-left: -10px;
 		}
 
 		#header h1 {
@@ -27,7 +30,10 @@
 		}
 
 		#header h2 {
-			margin-left: 20px;
+			position: absolute;
+			right: 23px;
+			top: 70px;
+			font-size: 40px
 		}
 
 		img {
@@ -36,7 +42,7 @@
 		}
 
 		h2 {
-			margin-top: 50px;
+			margin-top: 100px;
 			text-align: center;
 		}
 
@@ -44,6 +50,10 @@
 			text-decoration: none;
 			color: #993300;
 			border-bottom: solid 3px #930;
+		}
+
+		p, ul {
+			margin: 15px;
 		}
 
 		#footer {
@@ -59,11 +69,34 @@
 		<h1>fotofoto</h1>
 		<h2>malmö alpha</h2>
 	</div>
-	<p>The alpha takes place around Malmö central station. All the photos can be found within the area shown below.</p>
-	<iframe width="100%" height="500px" frameBorder="0" src="http://umap.fluv.io/en/map/fotofoto-malmo-station_6190?scaleControl=false&miniMap=false&scrollWheelZoom=false&zoomControl=true&allowEdit=false&moreControl=false&searchControl=null&tilelayersControl=null&embedControl=null&datalayersControl=false&onLoadPanel=undefined&captionBar=false"></iframe>
 	<p>
-		The finished game will be an app that will make sure you have found each photo, but this alpha has no way of verifying that. If you're in doubt about whether you have the correct angle, try taking the same photo with your phone to verify!
+		<b>Alpha disclaimer:</b>
+		The finished game will have an app that'll makes things smoother. Some thing missing from this alpha:
 	</p>
+	<ul>
+		<li>
+			The app verifies that you have taken the correct photo, using sensors in your phone, such as GPS and gyro. 
+			<br>
+			<b>For the alpha: if you're in doubt about whether you have the correct angle, try taking the same photo with your phone to verify!</b> 
+		</li>
+		<li>
+			The app can show you the photo you're looking for overlaid on the camera view of the phone, letting you align the two photos in a satisfying way.
+		</li>
+		<li>
+			The app shows you which photos you have found, and which ones remain. Completing a number of photos will unlock more, to keep you from getting overwhelmed.
+		</li>
+		<li>
+			The app keeps track of the bounds of the play space and let you know if you're moving outside them, so you don't have to keep looking at the map.
+		</li>
+	</ul>
+	<p>
+		Good luck, and have fun!
+	</p>
+	<h2>Play Space</h2>
+	<p>
+		The alpha takes place around Malmö central station. All the photos can be found within the area shown below.
+	</p>
+	<iframe width="100%" height="500px" frameBorder="0" src="http://umap.fluv.io/en/map/fotofoto-malmo-station_6190?scaleControl=false&miniMap=false&scrollWheelZoom=false&zoomControl=true&allowEdit=false&moreControl=false&searchControl=null&tilelayersControl=null&embedControl=null&datalayersControl=false&onLoadPanel=undefined&captionBar=false"></iframe>
 	<h2>Where were these photos taken?</h2>
 	<img src="images/alpha/6.jpg">
 	<img src="images/alpha/2.jpg">

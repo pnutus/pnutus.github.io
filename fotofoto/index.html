@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 	<title>fotofoto</title>
 	<meta charset="utf-8">
+	<meta name="viewport" content="width=603">
 	<style>
 		a {
 			text-decoration: none;
@@ -17,6 +18,10 @@
 			font-size: 20px;
 		}
 
+		p {
+			padding: 10px;
+		}
+
 		#header {
 			display: flex;
 			align-items: center;
@@ -24,6 +29,7 @@
 
 		#header > img {
 			width: 200px;
+			margin-left: -10px;
 		}
 
 		#header h1 {
@@ -37,16 +43,18 @@
 			flex-direction: row;
 			flex-wrap: wrap;
 			justify-content: space-between;
+			margin-bottom: 80px;
 		}
 
 		#comic > div {
 			position: relative;
 			margin-bottom: 3px;
+			font-size: 22px;
 		}
 
 		#comic > div p {
 			position: absolute;
-			margin: 20px;
+			margin: 10px;
 			padding: 5px 10px;
 
 			background-color: hsl(60, 90%, 100%);
@@ -62,6 +70,10 @@
 		#comic > div.full {
 			width: 100%;
 			font-size: 40px
+		}
+
+		#comic > div.full p {
+			margin: 20px;
 		}
 
 		#comic > div.full img {
@@ -121,27 +133,27 @@
 		</div>
 
 		<div>
-			<p style="bottom: 0; left: 10px; font-size: 17px;">
+			<p style="bottom: 0; left: 5px; font-size: 19px;">
 				see details you never noticed
 			</p>
 			<img src="images/details.jpg">
 		</div>
 		
 		<div>
-			<p style="bottom: 0; left: 0;">
+			<p style="bottom: 0; left: 20px;">
 				work with your friends
 			</p>
 			<img src="images/explore.jpg">
 		</div>
 
 		<div>
-			<p style="top: 10px; left: 30px; transform: rotateZ(10deg); font-size: 17px">
+			<p style="top: 20px; left: 10px; transform: rotateZ(10deg);">
 				find just the right angle...
 			</p>
 			<img src="images/angle.jpg">
 		</div>
+		<p style="display: block; font-size: 30px; text-align: center; padding: 10px 10px; border: solid 2px black; margin: 20px auto; width: 450px;">...and take the photo yourself!</p>
 	</div>
-	<p style="display: block; font-size: 30px; text-align: center; padding: 10px 10px; border: solid 2px black; margin: 20px auto; width: 450px;">...and take the photo yourself!</p>
 	<div>
 		<div class="grid">
 			<div><img src="images/grid/0002.jpg"></div>
