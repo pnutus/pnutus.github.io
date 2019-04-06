@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Blob</title>
+	<style>
+		body {
+			margin: 0;
+			background-color: black;
+			display: flex;
+			justify-content: center;
+
+
+			font-family: "Helvetica Neue", Roboto, sans-serif;
+			color: white;
+		}
+
+		canvas {
+			margin: 100px;
+		}
+
+		#top_right {
+			position: absolute;
+			top: 20px;
+			right: 20px;
+			width: 100px;
+		}
+	</style>
+</head>
+<body>
+	<canvas width=600 height=400></canvas>
+	<div id="top_right">
+		interactivity coming soon
+	</div>
+	<script language="javascript" src="https://npmcdn.com/regl/dist/regl.js"></script>
+	<script>
+		let regl = createREGL({
+			canvas: "canvas",
+			extensions: ["OES_standard_derivatives"],
+		});
+		regl.frame((context) => {
+			regl({
+			  uniforms: {
+			  	iTime: context.time,
+				iResolution: [context.drawingBufferWidth, context.drawingBufferHeight],
+				connectedness: 10,
+				layerDelay: 1,
+				blobCount: 10,
+				maxLayerOffset: 1,
+				contourWidth: 0.0001,
+				outlineFillMix: 1,
+				totalDelay: 0,
+				saturation: 0,
+				hue: 0.7,
+				layerHueChange: 0.2,
+				tunnelEffect: 0,
+				speed: 1,
+				maskScale: 1,
+				maskSquareness: 2.0,
+				maskAngle: 0,
+				maskFade: 0.3,
+			  },
+
+			  frag: `
+			  	#extension GL_OES_standard_derivatives : enable
+			  	precision mediump float;
+
+			  	uniform float iTime;
+				uniform vec2 iResolution;
+				uniform float connectedness;
+				uniform float layerDelay;
+				uniform int blobCount;
+				uniform float maxLayerOffset;
+				uniform float contourWidth;
+				uniform float outlineFillMix;
+				uniform float totalDelay;
+				uniform float saturation;
+				uniform float hue;
+				uniform float layerHueChange;
+				uniform float tunnelEffect;
+				uniform float speed;
+				uniform float maskScale;
+				uniform float maskSquareness;
+				uniform float maskAngle;
+				uniform float maskFade;
+
+				#define CIRCLE_COUNT 5
+				#define MAX_BLOB_COUNT 100
+
+				float blobDistanceField(vec2 position, float time, out vec2 gradient)
+				{
+				    vec2 circleCenters[CIRCLE_COUNT];
+				    float circleRadii[CIRCLE_COUNT];
+				    
+				    circleCenters[0] = 0.3 * vec2(sin(time * 0.23), sin(time - 2.0));
+				    circleRadii[0] = 0.1;
+				    
+				    circleCenters[1] = 0.2 * vec2(cos(time), cos(time * 0.7));
+				    circleRadii[1] = 0.12;
+				    
+				    circleCenters[2] = 0.2 * vec2(cos(2.0*sin(time * 1.1)), cos(time * 1.9));
+				    circleRadii[2] = 0.05;
+				    
+				    circleCenters[3] = 0.2 * vec2(cos(time) + sin(time * 1.1), cos(time + 0.1*sin(time)));
+				    circleRadii[3] = 0.08;
+				    
+				    circleCenters[4] = 0.2 * vec2(1.5*cos(0.17*time), cos(time * 1.3));
+				    circleRadii[4] = 0.1;
+				    
+				    // smooth min
+				    float hardness = - 100. / connectedness;
+				    float exps = 0.0;
+				    vec2 dExps = vec2(0.0);
+				    for (int i = 0; i < CIRCLE_COUNT; ++i)
+				    {
+				        vec2 fromCenter = position - circleCenters[i];
+				        float distanceToCircle = length(fromCenter) - circleRadii[i];
+				        float e = exp2(hardness * distanceToCircle);
+				        exps += e;
+				        dExps += normalize(fromCenter) * e;
+				    }
+				    
+				    gradient = dExps / exps;
+				    
+				    return log2(exps) / hardness;
+				}
+
+				vec3 hsv2rgb(vec3 c)
+				{
+				    vec4 K = vec4(1.0, 2.0 / 3.0, 1.0 / 3.0, 3.0);
+				    vec3 p = abs(fract(c.xxx + K.xyz) * 6.0 - K.www);
+				    return c.z * mix(K.xxx, clamp(p - K.xxx, 0.0, 1.0), c.y);
+				}
+
+				float loglerp(float a, float b, float t)
+				{
+				    return pow(a, 1.0 - t) * pow(b, t);
+				}
+
+
+				float square(vec2 a)
+				{
+				    return dot(a, a);
+				}
+
+				void main()
+				{
+				    vec2 position = (gl_FragCoord.xy - iResolution.xy / 2.0) / iResolution.y;
+				    
+				    vec3 colorI = vec3(0.0);
+				    for (int layerIndex = 0; layerIndex < MAX_BLOB_COUNT; ++layerIndex)
+				    {
+				    	if (layerIndex >= blobCount) 
+				    	{ 
+				    		break; 
+				    	}
+
+				        float layerFraction = float(layerIndex) / float(blobCount - 1) * maxLayerOffset;
+				        float time = mix(iTime, iTime - layerDelay, layerFraction) - totalDelay;
+				        
+				        float scale = loglerp(0.01, 10.0, layerFraction);
+				        vec2 gradient;
+				        float df = blobDistanceField(position * mix(1.0, scale, tunnelEffect), time, gradient);
+				        float spacing = 0.1;
+				        //df = fract(df / spacing) * spacing;
+				        gradient = vec2(dFdx(df), dFdy(df));
+				        float antiAliasSmoothing = 1.0 / iResolution.y;
+				        float fieldCutoff = mix(-contourWidth, contourWidth, layerFraction);
+				        float fill = smoothstep(df, df + antiAliasSmoothing, fieldCutoff) / float(blobCount);
+				        float gradientStrength = length(gradient);
+				        float outline = max(0.0, 1.0 - abs(df) / fwidth(df));
+				        float intensity = mix(outline, fill, outlineFillMix);
+				        
+				        colorI += hsv2rgb(vec3(hue + layerHueChange * layerFraction, saturation, intensity));
+				    }
+				    
+				    
+				    
+				    float mask;
+				    {
+				        mat2 rotation = mat2(cos(maskAngle), sin(maskAngle), -sin(maskAngle), cos(maskAngle));
+				        
+				        vec2 maskPosition = vec2(0, 0);
+				        
+				        vec2 between = abs(rotation * position - maskPosition);
+				        float distance;
+				        if (maskSquareness > 53.0) {
+				            distance = max(between.x, between.y);
+				        }
+				        else
+				        {
+				            vec2 p = pow(between, vec2(maskSquareness));
+				            distance = pow(p.x + p.y, 1.0 / maskSquareness);
+				        }
+				    
+				        mask = smoothstep(distance, distance + maskFade, maskScale);
+				    }
+
+				    // TODO: hook up mask
+				    
+				    gl_FragColor = vec4(colorI * mask, 1.0);
+				}`,
+
+			  vert: `
+			  attribute vec2 position;
+			  void main() {
+			    gl_Position = vec4(position, 0, 1);
+			  }`,
+
+			  attributes: {
+			    position: [[-1, -1], [1, -1], [1, 1],
+			    		   [1, 1], [-1, 1], [-1, -1]]
+			  },
+
+			  count: 6
+			})()
+		})
+	</script>
+</body>
+</html>
