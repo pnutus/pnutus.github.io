@@ -5,13 +5,13 @@
 	<style>
 		body {
 			margin: 0;
-			background-color: black;
+			background-color: white;
 			display: flex;
 			justify-content: center;
 
 
 			font-family: "Helvetica Neue", Roboto, sans-serif;
-			color: white;
+			color: black;
 		}
 
 		canvas {
@@ -27,7 +27,7 @@
 	</style>
 </head>
 <body>
-	<canvas width=600 height=400></canvas>
+	<canvas width=500 height=500></canvas>
 	<div id="top_right">
 		interactivity coming soon
 	</div>
@@ -49,15 +49,15 @@
 				contourWidth: 0.0001,
 				outlineFillMix: 1,
 				totalDelay: 0,
-				saturation: 0,
-				hue: 0.7,
+				saturation: 0.0,
+				hue: 0.3,
 				layerHueChange: 0.2,
-				tunnelEffect: 0,
+				tunnelEffect: 0.00,
 				speed: 1,
-				maskScale: 1,
+				maskScale: 0.7,
 				maskSquareness: 2.0,
 				maskAngle: 0,
-				maskFade: 0.3,
+				maskFade: 0.1,
 			  },
 
 			  frag: `
@@ -144,7 +144,8 @@
 
 				void main()
 				{
-				    vec2 position = (gl_FragCoord.xy - iResolution.xy / 2.0) / iResolution.y;
+					float padding = 1.2;
+				    vec2 position = (gl_FragCoord.xy - iResolution.xy / 2.0) / iResolution.y * padding;
 				    
 				    vec3 colorI = vec3(0.0);
 				    for (int layerIndex = 0; layerIndex < MAX_BLOB_COUNT; ++layerIndex)
@@ -173,8 +174,6 @@
 				        colorI += hsv2rgb(vec3(hue + layerHueChange * layerFraction, saturation, intensity));
 				    }
 				    
-				    
-				    
 				    float mask;
 				    {
 				        mat2 rotation = mat2(cos(maskAngle), sin(maskAngle), -sin(maskAngle), cos(maskAngle));
@@ -195,9 +194,11 @@
 				        mask = smoothstep(distance, distance + maskFade, maskScale);
 				    }
 
-				    // TODO: hook up mask
+				    vec3 color = colorI * mask;
+
+				    color = vec3(1.0) - color;
 				    
-				    gl_FragColor = vec4(colorI * mask, 1.0);
+				    gl_FragColor = vec4(color, 1.0);
 				}`,
 
 			  vert: `
