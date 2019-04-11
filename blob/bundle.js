@@ -343,7 +343,7 @@ regl.frame(context => {
     bigBlob[blobSlider.property] = quantizedValue;
   }
 
-  if (mouse.button.left.justReleased) {
+  if (mouse.button.left.justReleased && currentBlobSliderIndex >= 0) {
     let blobSlider = blobSliders[currentBlobSliderIndex];
     let value = bigBlob[blobSlider.property];
     let intValue = Math.floor(value * valueQuantization);
