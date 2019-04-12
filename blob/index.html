@@ -8,9 +8,35 @@
 		html {
 			touch-action: manipulation;
 		}
+
+		#info {
+			position: absolute;
+			margin: 20px;
+			color: white;
+			z-index: 100;
+			font-family: futura, sans-serif;
+		}
+
+		#info h1 {
+			display: inline;
+			margin-right: 10px;
+		}
+
+		#info p {
+			display: inline;
+		}
+
+		#info a {
+			color: white;
+			text-decoration: none;
+			border-bottom: 1px solid white;
+		}
 	</style>
 </head>
 <body>
+<div id="info">
+	<h1>Blob</h1><p>interactive visual by <a href="/">Pontus Granström</a></p>
+</div>
 <script src="bundle.js"></script>
 </body>
 </html>
